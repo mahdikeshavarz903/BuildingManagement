@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/linearLayoutfragment2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome To Dyno!"
+            android:textColor="#fff"
+            android:textSize="32sp"
+            android:id="@+id/tv2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome To Dyno!Please Set Your specification and join us...!"
+            android:textColor="#fff"
+            android:layout_marginTop="45dp"
+            android:textSize="18sp"
+            android:id="@+id/tv3"/>
+
+        <Button
+            android:id="@+id/aboutusbutton2"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/corner2"
+            android:text="About Us..."
+            android:textColor="@color/White" />
+    </LinearLayout>
+    <!--<EditText-->
+        <!--android:id="@+id/textTitle2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="58dp"-->
+        <!--android:hint="Pleaseee Enter Your Name..."-->
+        <!--android:backgroundTint="@color/SkyColor65"-->
+        <!--android:textSize="20sp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btnnavfrag2"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/btnnavfrag3"-->
+        <!--android:layout_alignBottom="@+id/btnnavfrag3"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_marginStart="23dp"-->
+        <!--android:text="Back" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btnnavfrag3"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginEnd="14dp"-->
+        <!--android:text="Next" />-->
+</RelativeLayout>
