@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println("Hello World!");
-
         Building building=new Building();
         building.setBuildingName("Shamsol emare");
         building.setBuildingManagerName("ALI");
