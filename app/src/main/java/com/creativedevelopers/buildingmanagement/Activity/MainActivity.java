@@ -16,8 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        System.out.println("Hello world !!!");
+
         Building building=new Building();
-        building.setBuildingName("Shamsol emare");
+        building.setBuildingName("Mild");
         building.setBuildingManagerName("ALI");
         building.setNumberOfBuildingUnits(5);
 //        Apartment apartment=new Apartment();
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //        Owner owner=new Owner("Mahdi","09198025037");
         DataBase dataBass=new DataBase(MainActivity.this);
         dataBass.getReadableDatabase();
-         //boolean result=dataBass.addBuilding(building);
+         boolean result=dataBass.addBuilding(building);
         //boolean result=dataBass.addApartment(apartment,owner);
         //System.out.println(result);
     }
