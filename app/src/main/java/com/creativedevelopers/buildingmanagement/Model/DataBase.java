@@ -201,7 +201,7 @@ public class DataBase extends SQLiteOpenHelper
         onCreate(db);
     }
     //**********************************************************************************************
-    public void addManagment(Apartment apartment)
+    public void addManagmentForBuilding(Apartment apartment)
     {
         String sql_command_insert = " insert into table_apartment ( " + COL_NAME + " , " +
             COL_PHONE_NUMBER + " , " +
