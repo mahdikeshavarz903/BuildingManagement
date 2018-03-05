@@ -13,7 +13,7 @@ public class Building
     private int numberOfBuildingUnits;
     private int id;
     private ArrayList<Apartment> apartments;
-    private generalAccounting GeneralAccounting = new generalAccounting();
+    private generalAccounting GeneralAccounting;
 
     public int getId() {
         return id;

@@ -269,6 +269,7 @@ public class DataBase extends SQLiteOpenHelper
     public Building getBuildingInformation()
     {
         Building building=new Building();
+        Bill bill= new Bill();
 
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
         Cursor cursor=sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_BUILDING,null);
@@ -282,6 +283,7 @@ public class DataBase extends SQLiteOpenHelper
                 building.setBuildingName(cursor.getString(1));
                 building.setBuildingManagerName(cursor.getString(2));
                 building.setNumberOfBuildingUnits(cursor.getInt(3));
+
                 cursor.moveToNext();
             }
         }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by jolan on 2/14/18.
  */
 
-public abstract class Bill
+public class Bill
 {
     /* Bill is subclass and its chaild is WaterBill,GasBil and Electricity.
         The chailds attributes
@@ -208,6 +208,9 @@ public abstract class Bill
 
 //************************---- calculation totalprice ----**********************************//
 
-    abstract public double calculationExpense();
+    public double calculationExpense()
+    {
+        return 0;
+    }
 
 }

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //        Owner owner=new Owner("Mahdi","09198025037");
         DataBase dataBass=new DataBase(MainActivity.this);
         dataBass.getReadableDatabase();
-         boolean result=dataBass.addBuilding(building);
+        dataBass.addBuilding(building);
         //boolean result=dataBass.addApartment(apartment,owner);
         //System.out.println(result);
     }
