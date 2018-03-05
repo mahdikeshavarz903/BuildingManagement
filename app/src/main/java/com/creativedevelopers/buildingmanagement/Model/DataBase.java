@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Mahdi on 2/15/18.
@@ -12,6 +13,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBase extends SQLiteOpenHelper
 {
+    private static final String TAG = "DataBase";
+
     public static final String DB_NAME="buildingManagement_db";
     public static final int DB_VERSION=1;
 
@@ -103,12 +106,12 @@ public class DataBase extends SQLiteOpenHelper
             String SQL_COMMAND_CREATE_BUILDING=" CREATE TABLE IF NOT EXISTS " + TABLE_BUILDING + "(" +
                     BUILDING_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     BUILDING_COL_NAME + " TEXT, " +
-                    BUILDING_COL_MANAGER_ID + " INTEGER, " +
                     NUMBER_OF_BUILDING_UNITS + " INTEGER, "+
+                    BUILDING_COL_MANAGER_ID + " INTEGER, " +
                     BUILDING_COL_GAS_BILL + " INTEGER, " +
                     BUILDING_COL_WATER_BILL + " INTEGER, " +
                     BUILDING_COL_ELECTRICITY_BILL + " INTEGER, " +
-                    BUILDING_COL_EXTRA_EXPENSES + " INTEGER , " +
+                    BUILDING_COL_EXTRA_EXPENSES + " INTEGER, " +
                     " FOREIGN KEY ( " + BUILDING_COL_MANAGER_ID + " ) REFERENCES " + TABLE_OWNER + "(" + OWNER_COL_ID + ") ,"+
                     " FOREIGN KEY ( " + BUILDING_COL_GAS_BILL + " ) REFERENCES " + TABLE_GAS_BILL + "(" + GAS_BILL_COL_ID + ") ,"+
                     " FOREIGN KEY ( " + BUILDING_COL_WATER_BILL + " ) REFERENCES " + TABLE_WATER_BILL + "(" + WATER_BILL_COL_ID + ") ,"+
@@ -117,14 +120,14 @@ public class DataBase extends SQLiteOpenHelper
                     ")"
                     ;
 
-            String SQL_COMMAND_CREATE_OWNER=" CREATE TABLE " + TABLE_OWNER +
-                    OWNER_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT"+
+            String SQL_COMMAND_CREATE_OWNER=" CREATE TABLE IF NOT EXISTS " + TABLE_OWNER + "("+
+                    OWNER_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"+
                     COL_NAME + " TEXT, " +
                     COL_PHONE_NUMBER + " TEXT, " +
                     COL_IS_MANAGER + "INTEGER DEFAULT 0,"+
                     COL_MEMBERS_NUM + " INTEGER);";
 
-            String SQL_COMMAND_CREATE_PROFILE_FOR_ONE_UNIT=" CREATE TABLE  IF NOT EXISTS" + TABLE_APARTMENT +"(" +
+            String SQL_COMMAND_CREATE_PROFILE_FOR_ONE_UNIT=" CREATE TABLE  IF NOT EXISTS " + TABLE_APARTMENT +"(" +
                     APARTMENT_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_OWNER + " INTEGER, " +
                     COL_BUILDING + " INTEGER, "+
@@ -144,22 +147,22 @@ public class DataBase extends SQLiteOpenHelper
                     ")"
                     ;
 
-            String SQL_COMMAND_CREATE_GAS_Bill=" CREATE TABLE IF NOT EXISTS " + TABLE_GAS_BILL +
-                    GAS_BILL_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+            String SQL_COMMAND_CREATE_GAS_Bill=" CREATE TABLE IF NOT EXISTS " + TABLE_GAS_BILL  + "(" +
+                    GAS_BILL_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     COL_GAS_COST + "DOUBLE," +
                     COL_DEADLINE_PAY_GAS_COST + " TEXT ," +
                     GAS_BILL_COL_EARMARK_PAY + " TEXT); "
                     ;
 
-            String SQL_COMMAND_CREATE_WATER_Bill=" CREATE TABLE IF NOT EXISTS " + TABLE_WATER_BILL +
-                    WATER_BILL_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+            String SQL_COMMAND_CREATE_WATER_Bill=" CREATE TABLE IF NOT EXISTS " + TABLE_WATER_BILL  + "(" +
+                    WATER_BILL_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     COL_WATER_COST + "DOUBLE," +
                     COL_DEADLINE_PAY_WATER_COST + " TEXT," +
                     WATER_BILL_COL_EARMARK_PAY + " TEXT); "
                     ;
 
-            String SQL_COMMAND_CREATE_ELECTRICITY_Bill=" CREATE TABLE IF NOT EXISTS " + TABLE_ELECTRICITY_BILL +
-                    ELECTRICITY_BILL_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT " +
+            String SQL_COMMAND_CREATE_ELECTRICITY_Bill=" CREATE TABLE IF NOT EXISTS " + TABLE_ELECTRICITY_BILL +  "(" +
+                    ELECTRICITY_BILL_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," +
                     COL_ELECTRICITY_COST + "DOUBLE," +
                     COL_DEADLINE_PAY_ELECTRICITY_COST + " TEXT," +
                     ELECTRICITY_BILL_COL_EARMARK_PAY + " TEXT); "
@@ -188,84 +191,80 @@ public class DataBase extends SQLiteOpenHelper
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BUILDING);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_OWNER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APARTMENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GAS_BILL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WATER_BILL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ELECTRICITY_BILL);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXTRA_EXPENSES);
         onCreate(db);
     }
-
-    public boolean addApartment(Apartment apartment,Owner owner)
+    //**********************************************************************************************
+    public void addManagment(Apartment apartment)
     {
-        ContentValues cv=new ContentValues();
-        cv.put(COL_NAME,owner.getName());
-        cv.put(COL_PHONE_NUMBER,owner.getPhoneNumber());
-        cv.put(COL_MEMBERS_NUM,apartment.getMembers_num());
-        cv.put(COL_ROOM_NUM,apartment.getApartmentNumber());
+        String sql_command_insert = " insert into table_apartment ( " + COL_NAME + " , " +
+            COL_PHONE_NUMBER + " , " +
+            COL_IS_MANAGER + " , " +
+            COL_MEMBERS_NUM +
+            ") values ( ' " + apartment.getOwner().getName() + " ' , ' "  + apartment.getOwner().getPhoneNumber() +" ' , ' 1 ' , ' " +
+            apartment.getMembers_num() + " ' );"
+            ;
 
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        long isInsert = sqLiteDatabase.insert(TABLE_APARTMENT,null,cv);
 
-        if(isInsert>0)
-            return true;
-        else
-            return false;
+        try {
+            sqLiteDatabase.execSQL(sql_command_insert);
+        }
+        catch (Exception e)
+        {
+            Log.i(TAG, "addBuilding: " + e);
+        }
+
     }
     //**********************************************************************************************
-    public boolean addBuilding(Building building,BuildingActivity buildingActivity,Bill bill,Owner owner)
+    public void addBuilding(Building building)
     {
-//        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
-//        sqLiteDatabase.rawQuery(" SELECT * FROM " + TABLE_OWNER + )
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
 
-        String sql1=" INSERT INTO " + TABLE_OWNER + " ( " +
-                BUILDING_COL_NAME + "," +
-                BUILDING_COL_MANAGER_ID + "," +
-                NUMBER_OF_BUILDING_UNITS + ")" +
-                " VALUE (" + building.getBuildingName() + ", SELECT owner_col_id FROM table_owner WHERE col_is_manager = 1 ," + building.getNumberOfBuildingUnits() +");"
-                ;
+        String sql_command_insert=" insert into " + TABLE_BUILDING + " ( " +
+            BUILDING_COL_NAME + "," +
+            NUMBER_OF_BUILDING_UNITS +
+            " ) values (' " + building.getBuildingName() + " ' , ' " + building.getNumberOfBuildingUnits() + " ' ); "
+            ;
 
+        try {
+            sqLiteDatabase.execSQL(sql_command_insert);
+        }
+        catch (Exception e)
+        {
+            Log.i(TAG, "addBuilding: " + e);
+        }
+    }
+
+//    public boolean addBuilding(Building building)
+//    {
 //        ContentValues cv = new ContentValues();
-//        cv.put(BUILDING_COL_NAME,building.getBuildingName());
-//        cv.put(BUILDING_COL_MANAGER_ID,);
-//        cv.put(NUMBER_OF_BUILDING_UNITS,building.getNumberOfBuildingUnits());
-//        cv.put(BUILDING_COL_GAS_COST,bill.getGasBills().get(bill.getGasBills().size()-1).getPrice());
-//        cv.put(COL_DEADLINE_PAY_GAS_COST,bill.getGasBills().get(bill.getGasBills().size()-1).getDate());
-//        cv.put(BUILDING_COL_WATER_COST,bill.getWaterBills().get(bill.getGasBills().size()-1).getPrice());
-//        cv.put(COL_DEADLINE_PAY_WATER_COST,bill.getGasBills().get(bill.getGasBills().size()-1).getDate());
-//        cv.put(BUILDING_COL_ELECTRICITY_COST,bill.getElectricityBills().get(bill.getGasBills().size()-1).getPrice());
-//        cv.put(COL_DEADLINE_PAY_ELECTRICITY_COST,bill.getGasBills().get(bill.getGasBills().size()-1).getDate());
-//        cv.put(COL_ACTIVITY_NAME,buildingActivity.getName());
-//        cv.put(COL_ACTIVITY_PRICE,buildingActivity.getPrice());
+////        cv.put(BUILDING_COL_NAME,building.getBuildingName());
+////        cv.put(BUILDING_COL_MANAGER_ID, building.getBuildingManagerName());
+////        cv.put(NUMBER_OF_BUILDING_UNITS,building.getNumberOfBuildingUnits());
+////        cv.put(BUILDING_COL_GAS_COST,0);
+////        cv.put(COL_DEADLINE_PAY_GAS_COST,0);
+////        cv.put(BUILDING_COL_WATER_COST,0);
+////        cv.put(COL_DEADLINE_PAY_WATER_COST,0);
+////        cv.put(BUILDING_COL_ELECTRICITY_COST,0);
+////        cv.put(COL_DEADLINE_PAY_ELECTRICITY_COST,0);
+////        cv.put(COL_ACTIVITY_NAME,"");
+////        cv.put(COL_ACTIVITY_PRICE,0);
 //
 //        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
 //        long isInsert=sqLiteDatabase.insert(TABLE_BUILDING,null,cv);
-
+//
 //        if (isInsert>0)
 //            return true;
 //        else
-            return false;
-    }
-
-    public boolean addBuilding(Building building)
-    {
-        ContentValues cv = new ContentValues();
-//        cv.put(BUILDING_COL_NAME,building.getBuildingName());
-//        cv.put(BUILDING_COL_MANAGER_ID, building.getBuildingManagerName());
-//        cv.put(NUMBER_OF_BUILDING_UNITS,building.getNumberOfBuildingUnits());
-//        cv.put(BUILDING_COL_GAS_COST,0);
-//        cv.put(COL_DEADLINE_PAY_GAS_COST,0);
-//        cv.put(BUILDING_COL_WATER_COST,0);
-//        cv.put(COL_DEADLINE_PAY_WATER_COST,0);
-//        cv.put(BUILDING_COL_ELECTRICITY_COST,0);
-//        cv.put(COL_DEADLINE_PAY_ELECTRICITY_COST,0);
-//        cv.put(COL_ACTIVITY_NAME,"");
-//        cv.put(COL_ACTIVITY_PRICE,0);
-
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        long isInsert=sqLiteDatabase.insert(TABLE_BUILDING,null,cv);
-
-        if (isInsert>0)
-            return true;
-        else
-            return false;
-    }
+//            return false;
+//    }
     //**********************************************************************************************
     public Building getBuildingInformation()
     {

@@ -14,6 +14,11 @@ public class Apartment
    private boolean is_monthlyCharge_payed;
    private boolean is_specificBill_payed;
    private int ApartmentNumber;
+
+    public Owner getOwner() {
+        return owner;
+    }
+
     public int getMembers_num() {
         return members_num;
     }
