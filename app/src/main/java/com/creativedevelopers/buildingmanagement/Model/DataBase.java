@@ -124,7 +124,7 @@ public class DataBase extends SQLiteOpenHelper
                     OWNER_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"+
                     COL_NAME + " TEXT, " +
                     COL_PHONE_NUMBER + " TEXT, " +
-                    COL_IS_MANAGER + "INTEGER DEFAULT 0,"+
+                    COL_IS_MANAGER + " INTEGER DEFAULT 0,"+
                     COL_MEMBERS_NUM + " INTEGER);";
 
             String SQL_COMMAND_CREATE_PROFILE_FOR_ONE_UNIT=" CREATE TABLE  IF NOT EXISTS " + TABLE_APARTMENT +"(" +
@@ -203,7 +203,7 @@ public class DataBase extends SQLiteOpenHelper
     //**********************************************************************************************
     public void addManagmentForBuilding(Apartment apartment)
     {
-        String sql_command_insert = " insert into table_apartment ( " + COL_NAME + " , " +
+        String sql_command_insert = " insert into table_owner ( " + COL_NAME + " , " +
             COL_PHONE_NUMBER + " , " +
             COL_IS_MANAGER + " , " +
             COL_MEMBERS_NUM +
@@ -242,29 +242,6 @@ public class DataBase extends SQLiteOpenHelper
         }
     }
 
-//    public boolean addBuilding(Building building)
-//    {
-//        ContentValues cv = new ContentValues();
-////        cv.put(BUILDING_COL_NAME,building.getBuildingName());
-////        cv.put(BUILDING_COL_MANAGER_ID, building.getBuildingManagerName());
-////        cv.put(NUMBER_OF_BUILDING_UNITS,building.getNumberOfBuildingUnits());
-////        cv.put(BUILDING_COL_GAS_COST,0);
-////        cv.put(COL_DEADLINE_PAY_GAS_COST,0);
-////        cv.put(BUILDING_COL_WATER_COST,0);
-////        cv.put(COL_DEADLINE_PAY_WATER_COST,0);
-////        cv.put(BUILDING_COL_ELECTRICITY_COST,0);
-////        cv.put(COL_DEADLINE_PAY_ELECTRICITY_COST,0);
-////        cv.put(COL_ACTIVITY_NAME,"");
-////        cv.put(COL_ACTIVITY_PRICE,0);
-//
-//        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-//        long isInsert=sqLiteDatabase.insert(TABLE_BUILDING,null,cv);
-//
-//        if (isInsert>0)
-//            return true;
-//        else
-//            return false;
-//    }
     //**********************************************************************************************
     public Building getBuildingInformation()
     {
