@@ -35,6 +35,10 @@ public class Apartment
         this.members_num = members_num;
     }
 
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     public boolean is_monthlyCharge_payed() {
         return is_monthlyCharge_payed;
     }
