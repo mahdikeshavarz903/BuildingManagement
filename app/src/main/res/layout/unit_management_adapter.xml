@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#546e7a"
+        android:layout_margin="3dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#29434e"
+            android:id="@id/unitManagement_adapter_relativeLayout"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/person"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape2_unit_management"
+                android:id="@id/unitManagement_adapter_imageView"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:weightSum="2"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/unitManagement_adapter_imageView">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@id/fullName_textView"
+                    android:layout_margin="5dp"
+                    android:text="مهدی کشاورز هدایتی"
+                    android:lines="1"
+                    android:gravity="center"
+                    android:background="@drawable/shape_unit_management"
+                    android:clickable="false"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@id/unitNumber_textView"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:text="5"
+                    android:background="@drawable/shape_unit_management"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:layout_weight="1"
+                    />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:id="@id/monthlyCharge_textView"
+            android:layout_below="@+id/unitManagement_adapter_relativeLayout"
+            android:layout_alignEnd="@id/unitManagement_adapter_relativeLayout"
+            android:layout_alignRight="@id/unitManagement_adapter_relativeLayout"
+            android:text="شارژ ماهانه : "
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_margin="10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/monthlyCharge_imageView"
+            android:layout_toLeftOf="@id/monthlyCharge_textView"
+            android:layout_below="@id/unitManagement_adapter_relativeLayout"
+            android:src="@drawable/ok"
+            android:background="#99d7fad7"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/waterBill_textView"
+            android:layout_below="@+id/unitManagement_adapter_relativeLayout"
+            android:layout_toLeftOf="@id/monthlyCharge_imageView"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:text="قبض آب : "
+            android:textColor="#ffffff"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/waterBill_imageView"
+            android:layout_toLeftOf="@id/waterBill_textView"
+            android:layout_below="@id/unitManagement_adapter_relativeLayout"
+            android:src="@drawable/ok"
+            android:background="#99d7fad7"
+            android:layout_marginTop="10dp"
+            android:layout_toStartOf="@id/waterBill_textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/electricityBill_textView"
+            android:layout_below="@+id/waterBill_textView"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="قبض برق : "
+            android:textColor="#ffffff"
+            android:layout_alignEnd="@id/unitManagement_adapter_relativeLayout"
+            android:layout_alignRight="@id/unitManagement_adapter_relativeLayout"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/electricityBill_imageView"
+            android:layout_toLeftOf="@id/monthlyCharge_textView"
+            android:layout_below="@id/monthlyCharge_imageView"
+            android:src="@drawable/delete"
+            android:background="#99fad7d7"
+            android:layout_marginTop="12dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/gasBill_textView"
+            android:layout_toLeftOf="@id/electricityBill_imageView"
+            android:layout_below="@+id/waterBill_textView"
+            android:textSize="20sp"
+            android:text="قبض گاز : "
+            android:textColor="#ffffff"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@id/gasBill_imageView"
+            android:layout_toLeftOf="@id/gasBill_textView"
+            android:layout_below="@id/monthlyCharge_imageView"
+            android:src="@drawable/ok"
+            android:background="#99d7fad7"
+            android:layout_marginTop="12dp"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gasBill_imageView"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="مشاهده جزیات بیشتر"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:background="@drawable/shape_unit_management"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

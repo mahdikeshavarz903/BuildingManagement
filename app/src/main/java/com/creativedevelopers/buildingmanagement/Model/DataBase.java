@@ -241,7 +241,6 @@ public class DataBase extends SQLiteOpenHelper
             Log.i(TAG, "addBuilding: " + e);
         }
     }
-
     //**********************************************************************************************
     public Building getBuildingInformation()
     {
@@ -269,5 +268,52 @@ public class DataBase extends SQLiteOpenHelper
         sqLiteDatabase.close();
 
         return building;
+    }
+    //**********************************************************************************************
+    public void getOwnerInformaiton()
+    {
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+
+        Cursor cursor_1=sqLiteDatabase.rawQuery("select * from table_apartment",null);
+        Cursor cursor_2=sqLiteDatabase.rawQuery("select * from table_owner",null);
+
+        cursor_1.moveToNext();
+        cursor_2.moveToNext();
+
+        if(cursor_1.getCount()>0)
+        {
+            while (cursor_1.isAfterLast())
+            {
+                Apartment apartment=new Apartment();
+
+                int apartment_owner=cursor_1.getInt(1);
+                int apartment_gasStatus=cursor_1.getInt(4);
+                int apartment_waterStatus=cursor_1.getInt(6);
+                int apartment_electricityStatus=cursor_1.getInt(8);
+                int apartment_monthlyChargeStatus=cursor_1.getInt(13);
+
+                int owner_id=cursor_2.getInt(0);
+
+                if (owner_id==apartment_owner)
+                {
+                    String owner_name=cursor_2.getString(1);
+                    int owner_memberNum=cursor_2.getInt(4);
+                }
+
+                apartment.setGasStatus(apartment_gasStatus);
+                apartment.setWaterStatus(apartment_waterStatus);
+                apartment.setElectricityStatus(apartment_electricityStatus);
+
+                if(apartment_monthlyChargeStatus==1)
+                    apartment.setIs_monthlyCharge_payed(true);
+                else
+                    apartment.setIs_monthlyCharge_payed(false);
+
+                cursor_1.moveToNext();
+            }
+        }
+
+        cursor_1.close();
+        sqLiteDatabase.close();
     }
 }

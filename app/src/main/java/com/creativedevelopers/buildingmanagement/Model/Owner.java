@@ -10,6 +10,7 @@ public class Owner
 {
    private String name ;
    private String phoneNumber;
+   private int id;
 
     public Owner(String ownerName,String ownerPhone)
     {
@@ -17,8 +18,14 @@ public class Owner
         this.phoneNumber = ownerPhone;
     }
     public Owner()
-    {
+    {}
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

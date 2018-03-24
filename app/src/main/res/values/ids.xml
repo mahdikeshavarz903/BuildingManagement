@@ -1,2 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    //for unitManagement class
+    <item name="toolbar" type="id"/>
+
+    <item name="mahdi_relativeLayout" type="id"/>
+
+    <item name="fullName_textView" type="id"/>
+    <item name="membersNumber_textView" type="id"/>
+    <item name="unitNumber_textView" type="id"/>
+
+    <item name="monthlyCharge_imageView" type="id"/>
+    <item name="electricityBill_imageView" type="id"/>
+    <item name="waterBill_imageView" type="id"/>
+    <item name="gasBill_imageView" type="id"/>
+
+    <item name="waterBill_textView" type="id"/>
+    <item name="gasBill_textView" type="id"/>
+    <item name="electricityBill_textView" type="id"/>
+    <item name="unitManagement_recyclerView" type="id"/>
+    <item name="unitManagement_adapter_imageView" type="id"/>
+    <item name="unitManagement_adapter_relativeLayout" type="id"/>
+    <item name="monthlyCharge_textView" type="id"/>
+
+</resources>

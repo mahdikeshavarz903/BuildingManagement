@@ -55,8 +55,8 @@ public class Building
     {
         Apartment newApartment = new Apartment();
         newApartment.setApartmentNumber(ApartmentNum);
-        newApartment.owner.setName(OwnerName);
-        newApartment.owner.setPhoneNumber(OwnerPhoneNumber);
+        newApartment.getOwner().setName(OwnerName);
+        newApartment.getOwner().setPhoneNumber(OwnerPhoneNumber);
         newApartment.setMembers_num(MembersNum);
         apartments.add(newApartment);
     }
@@ -74,7 +74,7 @@ public class Building
     {
         Apartment temp = new Apartment();
         for (int i=0;i<apartments.size();i++)
-            if (apartments.get(i).owner.getName()==ApartmentOwnerName)
+            if (apartments.get(i).getOwner().getName()==ApartmentOwnerName)
                 temp = apartments.get(i);
         return temp;
     }
