@@ -10,7 +10,7 @@ public class Apartment
 {
    private Owner owner;
    private ArrayList<Bill> bills;
-   private int members_num;
+
    private int gasStatus;
    private int waterStatus;
    private int electricityStatus;
@@ -22,20 +22,12 @@ public class Apartment
         return owner;
     }
 
-    public int getMembers_num() {
-        return members_num;
-    }
-
     public int getApartmentNumber() {
         return ApartmentNumber;
     }
 
     public void setApartmentNumber(int apartmentNumber) {
         ApartmentNumber = apartmentNumber;
-    }
-
-    public void setMembers_num(int members_num) {
-        this.members_num = members_num;
     }
 
     public void setOwner(Owner owner) {

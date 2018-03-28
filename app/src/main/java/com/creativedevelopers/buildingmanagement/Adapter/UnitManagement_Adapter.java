@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.creativedevelopers.buildingmanagement.Model.Apartment;
 import com.creativedevelopers.buildingmanagement.Model.DataBase;
 import com.creativedevelopers.buildingmanagement.R;
+
+import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
@@ -77,15 +80,37 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
             DataBase dataBase=new DataBase(context);
             dataBase.getReadableDatabase();
 
-            dataBase.getOwnerInformaiton();
+            ArrayList<Apartment> arrayList=dataBase.getOwnerInformaiton();
 
-            fullName_textView.setText("Mahdi keshavarz");
-            unitNumber_textView.setText("5");
-            monthlyCharge_imageView.setBackgroundResource(R.drawable.ok);
-            waterBill_imageView.setBackgroundResource(R.drawable.ok);
-            electricityBill_imageView.setBackgroundResource(R.drawable.delete);
-            gasBill_imageView.setBackgroundResource(R.drawable.ok);
+            for(int i=0;i<arrayList.size();i++)
+            {
+                fullName_textView.setText(arrayList.get(i).getOwner().getName());
+                unitNumber_textView.setText(arrayList.get(i).getApartmentNumber());
 
+                if(arrayList.get(i).getGasStatus()==1) {
+                    gasBill_imageView.setBackgroundResource(R.drawable.ok);
+                }else{
+                    gasBill_imageView.setBackgroundResource(R.drawable.delete);
+                }
+
+                if(arrayList.get(i).getWaterStatus()==1){
+                    waterBill_imageView.setBackgroundResource(R.drawable.ok);
+                } else{
+                    waterBill_imageView.setBackgroundResource(R.drawable.delete);
+                }
+
+                if(arrayList.get(i).getElectricityStatus()==1) {
+                    electricityBill_imageView.setBackgroundResource(R.drawable.ok);
+                } else{
+                    electricityBill_imageView.setBackgroundResource(R.drawable.delete);
+                }
+
+                if(arrayList.get(i).is_monthlyCharge_payed()==true){
+                    monthlyCharge_imageView.setBackgroundResource(R.drawable.ok);
+                } else {
+                    monthlyCharge_imageView.setBackgroundResource(R.drawable.delete);
+                }
+            }
         }
     }
 }

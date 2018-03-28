@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Mahdi on 2/15/18.
  */
@@ -35,6 +37,7 @@ public class DataBase extends SQLiteOpenHelper
     public static final String APARTMENT_COL_ID ="col_apartment_id";
     public static final String COL_OWNER="col_owner";
     public static final String COL_BUILDING="col_building";
+    public static final String COL_ROOM_NUM="col_room_num";
     public static final String APARTMENT_COL_GAS_COST="apartment_col_gas_cost";
     public static final String APARTMENT_COL_WATER_COST="apartment_col_water_cost";
     public static final String APARTMENT_COL_ELECTRICITY_COST="apartment_col_electricity_cost";
@@ -62,7 +65,6 @@ public class DataBase extends SQLiteOpenHelper
     //For Owner
     public static final String OWNER_COL_ID ="owner_col_id";
     public static final String COL_NAME="col_name";
-    public static final String COL_ROOM_NUM="col_room_num";
     public static final String COL_IS_MANAGER="col_is_manager";
     public static final String COL_PHONE_NUMBER="col_phone_number";
     public static final String COL_MEMBERS_NUM="col_members_num";
@@ -131,6 +133,7 @@ public class DataBase extends SQLiteOpenHelper
                     APARTMENT_COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_OWNER + " INTEGER, " +
                     COL_BUILDING + " INTEGER, "+
+                    COL_ROOM_NUM + " INTEGER ,"+
                     APARTMENT_COL_GAS_COST + " DOUBLE, " +
                     COL_GAS_PAYMENT_STATUS + " INTEGER DEFAULT 0, " +
                     APARTMENT_COL_WATER_COST + " DOUBLE, " +
@@ -208,7 +211,7 @@ public class DataBase extends SQLiteOpenHelper
             COL_IS_MANAGER + " , " +
             COL_MEMBERS_NUM +
             ") values ( ' " + apartment.getOwner().getName() + " ' , ' "  + apartment.getOwner().getPhoneNumber() +" ' , ' 1 ' , ' " +
-            apartment.getMembers_num() + " ' );"
+            apartment.getOwner().getMembers_num() + " ' );"
             ;
 
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
@@ -270,44 +273,53 @@ public class DataBase extends SQLiteOpenHelper
         return building;
     }
     //**********************************************************************************************
-    public void getOwnerInformaiton()
+    public ArrayList<Apartment> getOwnerInformaiton()
     {
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        ArrayList<Apartment> arrayList=new ArrayList<>();
 
         Cursor cursor_1=sqLiteDatabase.rawQuery("select * from table_apartment",null);
-        Cursor cursor_2=sqLiteDatabase.rawQuery("select * from table_owner",null);
+        Cursor cursor_2;
 
         cursor_1.moveToNext();
-        cursor_2.moveToNext();
 
         if(cursor_1.getCount()>0)
         {
             while (cursor_1.isAfterLast())
             {
                 Apartment apartment=new Apartment();
+                Owner owner=new Owner();
 
                 int apartment_owner=cursor_1.getInt(1);
+                int apartment_roomNum=cursor_1.getInt(3);
                 int apartment_gasStatus=cursor_1.getInt(4);
                 int apartment_waterStatus=cursor_1.getInt(6);
                 int apartment_electricityStatus=cursor_1.getInt(8);
                 int apartment_monthlyChargeStatus=cursor_1.getInt(13);
 
-                int owner_id=cursor_2.getInt(0);
+                cursor_2=sqLiteDatabase.rawQuery("select * from table_owner where col_owner like" +  apartment_owner,null);
+                cursor_2.moveToNext();
 
-                if (owner_id==apartment_owner)
-                {
-                    String owner_name=cursor_2.getString(1);
-                    int owner_memberNum=cursor_2.getInt(4);
-                }
+                //int owner_id = cursor_2.getInt(0);
 
+                String owner_name = cursor_2.getString(1);
+                int owner_memberNum = cursor_2.getInt(4);
+
+                owner.setName(owner_name);
+                owner.setMembers_num(owner_memberNum);
+
+                apartment.setOwner(owner);
                 apartment.setGasStatus(apartment_gasStatus);
                 apartment.setWaterStatus(apartment_waterStatus);
                 apartment.setElectricityStatus(apartment_electricityStatus);
+                apartment.setApartmentNumber(apartment_roomNum);
 
                 if(apartment_monthlyChargeStatus==1)
                     apartment.setIs_monthlyCharge_payed(true);
                 else
                     apartment.setIs_monthlyCharge_payed(false);
+
+                arrayList.add(apartment);
 
                 cursor_1.moveToNext();
             }
@@ -315,5 +327,8 @@ public class DataBase extends SQLiteOpenHelper
 
         cursor_1.close();
         sqLiteDatabase.close();
+
+        return arrayList;
     }
+
 }

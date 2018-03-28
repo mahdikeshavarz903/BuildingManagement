@@ -3,6 +3,8 @@
 
 
     //for unitManagement class
+    <item name="floatingActionButton" type="id"/>
+
     <item name="toolbar" type="id"/>
 
     <item name="mahdi_relativeLayout" type="id"/>

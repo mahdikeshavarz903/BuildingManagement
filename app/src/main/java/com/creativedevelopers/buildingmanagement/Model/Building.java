@@ -57,7 +57,7 @@ public class Building
         newApartment.setApartmentNumber(ApartmentNum);
         newApartment.getOwner().setName(OwnerName);
         newApartment.getOwner().setPhoneNumber(OwnerPhoneNumber);
-        newApartment.setMembers_num(MembersNum);
+        newApartment.getOwner().setMembers_num(MembersNum);
         apartments.add(newApartment);
     }
     //**********************************************************************************************

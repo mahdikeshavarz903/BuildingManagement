@@ -11,6 +11,7 @@ public class Owner
    private String name ;
    private String phoneNumber;
    private int id;
+   private int members_num;
 
     public Owner(String ownerName,String ownerPhone)
     {
@@ -19,6 +20,14 @@ public class Owner
     }
     public Owner()
     {}
+
+    public int getMembers_num() {
+        return members_num;
+    }
+
+    public void setMembers_num(int members_num) {
+        this.members_num = members_num;
+    }
 
     public void setId(int id) {
         this.id = id;
