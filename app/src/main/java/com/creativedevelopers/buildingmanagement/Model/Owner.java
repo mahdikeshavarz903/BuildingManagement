@@ -12,6 +12,7 @@ public class Owner
    private String phoneNumber;
    private int id;
    private int members_num;
+   private int isManager;
 
     public Owner(String ownerName,String ownerPhone)
     {
@@ -23,6 +24,14 @@ public class Owner
 
     public int getMembers_num() {
         return members_num;
+    }
+
+    public int getIsManager() {
+        return isManager;
+    }
+
+    public void setIsManager(int isManager) {
+        this.isManager = isManager;
     }
 
     public void setMembers_num(int members_num) {

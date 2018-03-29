@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +27,15 @@ import javax.annotation.Resource;
 public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_Adapter.OwnerHolder>
 {
     private Context context;
+    private ArrayList<Apartment> arrayList;
+    private DataBase dataBase;
 
     public UnitManagement_Adapter(Context context)
     {
         this.context = context;
+        dataBase=new DataBase(context);
+        dataBase.getReadableDatabase();
+    arrayList=dataBase.getOwnerInformaiton();
     }
 
     @Override
@@ -44,13 +50,12 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
     @Override
     public void onBindViewHolder(OwnerHolder holder, int position)
     {
-
-        holder.setData();
+        holder.setData(position);
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 5;
     }
 
     public class OwnerHolder extends RecyclerView.ViewHolder
@@ -75,41 +80,41 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
         }
 
         @SuppressLint("ResourceType")
-        public void setData()
+        public void setData(int position)
         {
-            DataBase dataBase=new DataBase(context);
-            dataBase.getReadableDatabase();
+            fullName_textView.setText(arrayList.get(position).getOwner().getName().toString());
+            unitNumber_textView.setText(""+arrayList.get(position).getApartmentNumber());
 
-            ArrayList<Apartment> arrayList=dataBase.getOwnerInformaiton();
+            if(arrayList.get(position).getGasStatus()==1) {
+                gasBill_imageView.setImageResource(R.drawable.ok);
+                gasBill_imageView.setBackgroundColor(Color.rgb(215,250,215));
+            }else{
+                gasBill_imageView.setImageResource(R.drawable.delete);
+                gasBill_imageView.setBackgroundColor(Color.rgb(250,215,215));
+            }
 
-            for(int i=0;i<arrayList.size();i++)
-            {
-                fullName_textView.setText(arrayList.get(i).getOwner().getName());
-                unitNumber_textView.setText(arrayList.get(i).getApartmentNumber());
+            if(arrayList.get(position).getWaterStatus()==1){
+                waterBill_imageView.setImageResource(R.drawable.ok);
+                waterBill_imageView.setBackgroundColor(Color.rgb(215,250,215));
+            } else{
+                waterBill_imageView.setImageResource(R.drawable.delete);
+                waterBill_imageView.setBackgroundColor(Color.rgb(250,215,215));
+            }
 
-                if(arrayList.get(i).getGasStatus()==1) {
-                    gasBill_imageView.setBackgroundResource(R.drawable.ok);
-                }else{
-                    gasBill_imageView.setBackgroundResource(R.drawable.delete);
-                }
+            if(arrayList.get(position).getElectricityStatus()==1) {
+                electricityBill_imageView.setImageResource(R.drawable.ok);
+                electricityBill_imageView.setBackgroundColor(Color.rgb(215,250,215));
+            } else{
+                electricityBill_imageView.setImageResource(R.drawable.delete);
+                electricityBill_imageView.setBackgroundColor(Color.rgb(250,215,215));
+            }
 
-                if(arrayList.get(i).getWaterStatus()==1){
-                    waterBill_imageView.setBackgroundResource(R.drawable.ok);
-                } else{
-                    waterBill_imageView.setBackgroundResource(R.drawable.delete);
-                }
-
-                if(arrayList.get(i).getElectricityStatus()==1) {
-                    electricityBill_imageView.setBackgroundResource(R.drawable.ok);
-                } else{
-                    electricityBill_imageView.setBackgroundResource(R.drawable.delete);
-                }
-
-                if(arrayList.get(i).is_monthlyCharge_payed()==true){
-                    monthlyCharge_imageView.setBackgroundResource(R.drawable.ok);
-                } else {
-                    monthlyCharge_imageView.setBackgroundResource(R.drawable.delete);
-                }
+            if(arrayList.get(position).is_monthlyCharge_payed()==true){
+                monthlyCharge_imageView.setImageResource(R.drawable.ok);
+                monthlyCharge_imageView.setBackgroundColor(Color.rgb(215,250,215));
+            } else {
+                monthlyCharge_imageView.setImageResource(R.drawable.delete);
+                monthlyCharge_imageView.setBackgroundColor(Color.rgb(250,215,215));
             }
         }
     }

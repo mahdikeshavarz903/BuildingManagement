@@ -26,7 +26,8 @@
         android:layout_height="match_parent"
         android:layout_margin="2dp"
         android:background="#673e8f"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@id/floatingActionButton"
@@ -35,8 +36,9 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="30dp"
         android:src="@drawable/add"
-        app:backgroundTint="#ffffff"
+        app:backgroundTint="#785258"
         app:fabSize="normal"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded"
+        />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -204,15 +204,44 @@ public class DataBase extends SQLiteOpenHelper
         onCreate(db);
     }
     //**********************************************************************************************
-    public void addManagmentForBuilding(Apartment apartment)
+    public void addOwner(Owner owner)
     {
         String sql_command_insert = " insert into table_owner ( " + COL_NAME + " , " +
             COL_PHONE_NUMBER + " , " +
             COL_IS_MANAGER + " , " +
             COL_MEMBERS_NUM +
-            ") values ( ' " + apartment.getOwner().getName() + " ' , ' "  + apartment.getOwner().getPhoneNumber() +" ' , ' 1 ' , ' " +
-            apartment.getOwner().getMembers_num() + " ' );"
+            ") values ( ' " + owner.getName() + " ' , ' "  + owner.getPhoneNumber() +" ' , ' "+ owner.getIsManager() +" ' , ' " +
+            owner.getMembers_num() + " ' );"
             ;
+
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+
+        try {
+            sqLiteDatabase.execSQL(sql_command_insert);
+        }
+        catch (Exception e)
+        {
+            Log.i(TAG, "addBuilding: " + e);
+        }
+
+    }
+    //**********************************************************************************************
+    public void addApartment(Apartment apartment,int owner_id,int building_id)
+    {
+        String sql_command_insert = " insert into table_apartment ( " + COL_OWNER + " , " +
+                COL_BUILDING + " , " +
+                COL_ROOM_NUM + " , " +
+                COL_GAS_PAYMENT_STATUS + " , " +
+                COL_WATER_PAYMENT_STATUS + " , " +
+                COL_ELECTRICITY_PAYMENT_STATUS + " , " +
+                COL_MONTHLY_CHARGE_PAYMENT_STATUS +
+                ") values ( ' " + owner_id + " ' , ' "  + building_id +" ' , ' "+
+                apartment.getApartmentNumber() +" ' , ' " +
+                apartment.getGasStatus() +" ' , ' " +
+                apartment.getWaterStatus() + " ' , ' " +
+                apartment.getElectricityStatus() + " ' , ' " +
+                apartment.is_monthlyCharge_payed() + " ' ); "
+                ;
 
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
 
@@ -285,43 +314,54 @@ public class DataBase extends SQLiteOpenHelper
 
         if(cursor_1.getCount()>0)
         {
-            while (cursor_1.isAfterLast())
+            while (!cursor_1.isAfterLast())
             {
                 Apartment apartment=new Apartment();
                 Owner owner=new Owner();
 
                 int apartment_owner=cursor_1.getInt(1);
                 int apartment_roomNum=cursor_1.getInt(3);
-                int apartment_gasStatus=cursor_1.getInt(4);
-                int apartment_waterStatus=cursor_1.getInt(6);
-                int apartment_electricityStatus=cursor_1.getInt(8);
+                int apartment_gasStatus=cursor_1.getInt(5);
+                int apartment_waterStatus=cursor_1.getInt(7);
+                int apartment_electricityStatus=cursor_1.getInt(9);
                 int apartment_monthlyChargeStatus=cursor_1.getInt(13);
 
-                cursor_2=sqLiteDatabase.rawQuery("select * from table_owner where col_owner like" +  apartment_owner,null);
-                cursor_2.moveToNext();
+                try
+                {
+                    cursor_2 = sqLiteDatabase.rawQuery("select * from table_owner where owner_col_id = ' " + apartment_owner + " ' ", null);
+                    cursor_2.moveToNext();
 
-                //int owner_id = cursor_2.getInt(0);
+                    //int owner_id = cursor_2.getInt(0);
 
-                String owner_name = cursor_2.getString(1);
-                int owner_memberNum = cursor_2.getInt(4);
+                    if(cursor_2.getCount()>0)
+                    {
+                        String owner_name = cursor_2.getString(1);
+                        int owner_memberNum = cursor_2.getInt(4);
 
-                owner.setName(owner_name);
-                owner.setMembers_num(owner_memberNum);
+                        owner.setName(owner_name);
+                        owner.setMembers_num(owner_memberNum);
 
-                apartment.setOwner(owner);
-                apartment.setGasStatus(apartment_gasStatus);
-                apartment.setWaterStatus(apartment_waterStatus);
-                apartment.setElectricityStatus(apartment_electricityStatus);
-                apartment.setApartmentNumber(apartment_roomNum);
+                        apartment.setOwner(owner);
+                    }
 
-                if(apartment_monthlyChargeStatus==1)
-                    apartment.setIs_monthlyCharge_payed(true);
-                else
-                    apartment.setIs_monthlyCharge_payed(false);
+                    apartment.setGasStatus(apartment_gasStatus);
+                    apartment.setWaterStatus(apartment_waterStatus);
+                    apartment.setElectricityStatus(apartment_electricityStatus);
+                    apartment.setApartmentNumber(apartment_roomNum);
 
-                arrayList.add(apartment);
+                    if (apartment_monthlyChargeStatus == 1)
+                        apartment.setIs_monthlyCharge_payed(true);
+                    else
+                        apartment.setIs_monthlyCharge_payed(false);
 
-                cursor_1.moveToNext();
+                    arrayList.add(apartment);
+
+                    cursor_1.moveToNext();
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e);
+                }
             }
         }
 
