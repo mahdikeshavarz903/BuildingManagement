@@ -9,6 +9,8 @@
 
     <item name="mahdi_relativeLayout" type="id"/>
 
+    <item name="showDetail" type="id"/>
+    
     <item name="fullName_textView" type="id"/>
     <item name="membersNumber_textView" type="id"/>
     <item name="unitNumber_textView" type="id"/>

@@ -2,10 +2,10 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#696868"
-    >
+    android:background="#696868">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -24,9 +24,10 @@
         android:id="@id/unitManagement_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#696868"
         android:layout_margin="3dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:background="#696868"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@id/floatingActionButton"
@@ -36,6 +37,7 @@
         android:layout_margin="30dp"
         app:backgroundTint="#615f5f"
         app:fabSize="normal"
+        tools:ignore="RtlHardcoded"
         />
 
 </android.support.design.widget.CoordinatorLayout>

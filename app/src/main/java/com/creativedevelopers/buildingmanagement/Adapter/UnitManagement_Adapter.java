@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +52,7 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
     public void onBindViewHolder(OwnerHolder holder, int position)
     {
         holder.setData(position);
+
     }
 
     @Override
@@ -67,6 +69,7 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
         private ImageView waterBill_imageView;
         private ImageView electricityBill_imageView;
         private ImageView gasBill_imageView;
+        private Button showDetail;
 
         public OwnerHolder(View itemView)
         {
@@ -77,6 +80,7 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
             this.waterBill_imageView=itemView.findViewById(R.id.waterBill_imageView);
             this.electricityBill_imageView=itemView.findViewById(R.id.electricityBill_imageView);
             this.gasBill_imageView=itemView.findViewById(R.id.gasBill_imageView);
+            this.showDetail=itemView.findViewById(R.id.showDetail);
         }
 
         @SuppressLint("ResourceType")
