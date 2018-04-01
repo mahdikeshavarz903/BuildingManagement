@@ -42,6 +42,7 @@ public class DataBase extends SQLiteOpenHelper
     public static final String APARTMENT_COL_WATER_COST="apartment_col_water_cost";
     public static final String APARTMENT_COL_ELECTRICITY_COST="apartment_col_electricity_cost";
     public static final String COL_DEBT="col_debt";
+    public static final String COL_CREDITOR="col_creditor";
     public static final String COL_MONTHLY_CHARGE="col_monthly_charge";
     public static final String COL_GAS_PAYMENT_STATUS="col_gas_payment_status";
     public static final String COL_WATER_PAYMENT_STATUS="col_water_payment_status";
@@ -141,6 +142,7 @@ public class DataBase extends SQLiteOpenHelper
                     APARTMENT_COL_ELECTRICITY_COST + " DOUBLE, " +
                     COL_ELECTRICITY_PAYMENT_STATUS + " INTEGER DEFAULT 0, " +
                     COL_DEBT + " DOUBLE, " +
+                    COL_CREDITOR + " DOUBLE, " +
                     COL_EXTRA_EXPENSES + " DOUBLE, " +
                     COL_EXTRA_EXPENSES_PAYMENT_STATUS + " INTEGER DEFAULT 0, " +
                     COL_MONTHLY_CHARGE + " DOUBLE, " +
