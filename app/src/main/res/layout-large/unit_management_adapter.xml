@@ -179,7 +179,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_unit_management"
-                android:text="مشاهده جزیات بیشتر"
+                android:text="مشاهده جزئیات بیشتر"
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
 

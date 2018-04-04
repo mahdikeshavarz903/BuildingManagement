@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+    <resources>
 
+    <item name="mahdi_relativeLayout" type="id"/>
 
     //for unitManagement class
     <item name="floatingActionButton" type="id"/>
 
     <item name="toolbar" type="id"/>
-
-    <item name="mahdi_relativeLayout" type="id"/>
 
     <item name="showDetail" type="id"/>
     
@@ -27,5 +26,9 @@
     <item name="unitManagement_adapter_imageView" type="id"/>
     <item name="unitManagement_adapter_relativeLayout" type="id"/>
     <item name="monthlyCharge_textView" type="id"/>
+
+    //for units_detail
+    <item name="linearLayout_1" type="id"/>
+
 
 </resources>

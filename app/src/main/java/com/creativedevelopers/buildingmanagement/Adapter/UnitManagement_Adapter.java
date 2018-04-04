@@ -1,10 +1,17 @@
 package com.creativedevelopers.buildingmanagement.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +20,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.creativedevelopers.buildingmanagement.Fragment.UnitManagement;
+import com.creativedevelopers.buildingmanagement.Fragment.UnitsDetail;
 import com.creativedevelopers.buildingmanagement.Model.Apartment;
 import com.creativedevelopers.buildingmanagement.Model.DataBase;
 import com.creativedevelopers.buildingmanagement.R;
+import com.creativedevelopers.buildingmanagement.Unit_Test.Mahdi;
 
 import java.util.ArrayList;
 
@@ -36,7 +46,7 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
         this.context = context;
         dataBase=new DataBase(context);
         dataBase.getReadableDatabase();
-    arrayList=dataBase.getOwnerInformaiton();
+        arrayList=dataBase.getOwnerInformaiton();
     }
 
     @Override
@@ -71,6 +81,7 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
         private ImageView gasBill_imageView;
         private Button showDetail;
 
+
         public OwnerHolder(View itemView)
         {
             super(itemView);
@@ -81,6 +92,17 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
             this.electricityBill_imageView=itemView.findViewById(R.id.electricityBill_imageView);
             this.gasBill_imageView=itemView.findViewById(R.id.gasBill_imageView);
             this.showDetail=itemView.findViewById(R.id.showDetail);
+
+            showDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                UnitsDetail unitsDetail=new UnitsDetail();
+
+                FragmentTransaction fragmentTransaction = Mahdi.fragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mahdi_relativeLayout,unitsDetail).commit();
+                }
+            });
         }
 
         @SuppressLint("ResourceType")
@@ -122,4 +144,5 @@ public class UnitManagement_Adapter extends RecyclerView.Adapter<UnitManagement_
             }
         }
     }
+
 }

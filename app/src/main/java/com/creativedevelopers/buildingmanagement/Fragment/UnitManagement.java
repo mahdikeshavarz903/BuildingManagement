@@ -1,6 +1,8 @@
 package com.creativedevelopers.buildingmanagement.Fragment;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.support.v7.widget.RecyclerView;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
+import android.widget.Toolbar;
 
 import com.creativedevelopers.buildingmanagement.Adapter.UnitManagement_Adapter;
 import com.creativedevelopers.buildingmanagement.R;
@@ -21,6 +24,7 @@ public class UnitManagement extends android.app.Fragment
 {
     private View view;
     private RecyclerView recyclerView;
+    private Toolbar toolbar;
 
     public UnitManagement() {}
 
@@ -37,4 +41,5 @@ public class UnitManagement extends android.app.Fragment
 
         return view;
     }
+
 }

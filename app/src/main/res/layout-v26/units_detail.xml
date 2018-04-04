@@ -43,6 +43,7 @@
                 android:lines="1"
                 android:padding="5dp"
                 android:text="3"
+                android:tooltipText="شماره واحد"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
 

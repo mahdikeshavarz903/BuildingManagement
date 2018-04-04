@@ -1,8 +1,11 @@
 package com.creativedevelopers.buildingmanagement.Activity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.creativedevelopers.buildingmanagement.Fragment.UnitManagement;
 import com.creativedevelopers.buildingmanagement.Model.Apartment;
 import com.creativedevelopers.buildingmanagement.Model.Building;
 import com.creativedevelopers.buildingmanagement.Model.DataBase;

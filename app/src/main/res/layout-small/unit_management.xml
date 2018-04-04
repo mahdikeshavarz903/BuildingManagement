@@ -15,7 +15,7 @@
             android:id="@id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="?colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways" />
 
     </android.support.design.widget.AppBarLayout>
@@ -24,6 +24,7 @@
         android:id="@id/unitManagement_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="2dp"
         android:background="#696868"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
@@ -34,8 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="30dp"
-        app:backgroundTint="#c8c7c9"
-        android:src="@drawable/add"
+        app:backgroundTint="#615f5f"
         app:fabSize="normal"
         tools:ignore="RtlHardcoded"
         />

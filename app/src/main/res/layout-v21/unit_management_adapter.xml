@@ -4,14 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
     app:cardCornerRadius="5dp"
-    app:cardElevation="2dp">
+    app:cardElevation="2dp"
+    android:background="#ffffff"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp">
+        android:layout_margin="2dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,7 +54,7 @@
                         android:lines="1"
                         android:text="مهدی کشاورز هدایتی"
                         android:textColor="#ffffff"
-                        android:textSize="15sp" />
+                        android:textSize="25sp" />
 
                     <TextView
                         android:id="@id/unitNumber_textView"
@@ -64,7 +66,7 @@
                         android:gravity="center"
                         android:text="5"
                         android:textColor="#ffffff"
-                        android:textSize="15sp" />
+                        android:textSize="25sp" />
 
 
                 </LinearLayout>
@@ -91,9 +93,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/unitManagement_adapter_relativeLayout"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@id/monthlyCharge_textView"
-                android:background="#99d7fad7" />
+                android:background="#99d7fad7"
+                />
 
             <TextView
                 android:id="@id/waterBill_textView"
@@ -104,20 +107,22 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@id/monthlyCharge_imageView"
                 android:text="قبض آب : "
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                />
 
             <ImageView
                 android:id="@id/waterBill_imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/unitManagement_adapter_relativeLayout"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@id/waterBill_textView"
                 android:layout_toStartOf="@id/waterBill_textView"
-                android:background="#99d7fad7" />
+                android:background="#99d7fad7"
+                />
 
             <TextView
                 android:id="@id/electricityBill_textView"
@@ -136,9 +141,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/monthlyCharge_imageView"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@id/monthlyCharge_textView"
-                android:background="#99fad7d7" />
+                android:background="#99fad7d7"
+                />
 
             <TextView
                 android:id="@id/gasBill_textView"
@@ -148,25 +154,26 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@id/electricityBill_imageView"
                 android:text="قبض گاز : "
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:layout_centerHorizontal="true"
+                />
 
             <ImageView
                 android:id="@id/gasBill_imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/monthlyCharge_imageView"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_toLeftOf="@id/gasBill_textView"
-                android:background="#99d7fad7" />
+                android:background="#99d7fad7"
+                />
 
             <Button
-                android:id="@id/showDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/electricityBill_textView"
+                android:layout_below="@id/gasBill_textView"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -174,7 +181,7 @@
                 android:background="@drawable/shape_unit_management"
                 android:text="مشاهده جزئیات بیشتر"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
         </RelativeLayout>
 
