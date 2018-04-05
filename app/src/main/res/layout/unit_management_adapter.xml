@@ -23,12 +23,14 @@
                 android:layout_height="wrap_content"
                 android:background="#314b56">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@id/unitManagement_adapter_imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/shape2_unit_management"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#ffffff"
+                    android:background="#314b56"
                     android:src="@drawable/person" />
 
                 <LinearLayout
@@ -170,7 +172,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_unit_management"
-                android:text="مشاهده جزیات بیشتر"
+                android:text=" جزیات بیشتر"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
 
