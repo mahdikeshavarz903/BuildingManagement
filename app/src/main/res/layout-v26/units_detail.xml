@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@id/toolbar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content"
+        >
 
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/back_arrow" />
+        <android.support.v7.widget.Toolbar
+            android:id="@id/unitsDetail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll"
+            />
 
-    </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar">
+        android:layout_marginTop="2dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
         <LinearLayout
             android:id="@id/linearLayout_1"
@@ -102,4 +108,4 @@
 
     </RelativeLayout>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

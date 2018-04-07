@@ -31,8 +31,17 @@ public class UnitsDetail extends android.app.Fragment
         android.support.v7.widget.Toolbar toolbar=view.findViewById(R.id.unitsDetail_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UnitManagement unitManagement=new UnitManagement();
+                getActivity().getFragmentManager().beginTransaction().replace(R.id.mahdi_relativeLayout,unitManagement).commit();
+            }
+        });
+
         ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         return view;
     }
