@@ -1,111 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+
+    <android.support.v7.widget.Toolbar
+        android:id="@id/unitsDetail_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@id/unitsDetail_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            app:layout_scrollFlags="scroll"
-            />
 
-    </android.support.design.widget.AppBarLayout>
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        android:layout_height="match_parent"
+        android:layout_below="@id/unitsDetail_toolbar"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <LinearLayout
             android:id="@id/linearLayout_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#333571"
-            android:orientation="horizontal"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="4dp"
-            android:weightSum="2">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="3">
 
-            <TextView
-                android:id="@id/fullName_textView"
+            <Button
+                android:id="@id/electricityBill_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/shape_unit_management"
-                android:gravity="center"
+                android:background="#9b61e6"
+                android:elevation="4dp"
                 android:lines="1"
-                android:padding="5dp"
-                android:text="3"
-                android:tooltipText="شماره واحد"
+                android:text="قبض برق"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="25sp" />
 
-            <TextView
+            <Button
+                android:id="@id/gasBill_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/shape_unit_management"
-                android:gravity="center"
+                android:background="#7203e1"
+                android:elevation="4dp"
                 android:lines="1"
-                android:padding="5dp"
-                android:text="مهدی کشاورز هدایتی"
+                android:text="قبض گاز"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@id/extraExpenses_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#a49c26"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingRight="4dp"
+                android:text="هزینه های ثابت"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linearLayout_1"
-            android:background="#333571"
-            android:orientation="horizontal"
-            android:padding="4dp"
-            android:weightSum="2">
+            android:id="@id/linearLayout_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="3">
 
-            <TextView
-                android:id="@id/fullName_textView"
+            <Button
+                android:id="@id/waterBill_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/shape_unit_management"
-                android:gravity="center"
+                android:background="#ff65"
+                android:elevation="4dp"
                 android:lines="1"
-                android:padding="5dp"
-                android:text="1"
+                android:text="قبض آب"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="25sp" />
 
-            <TextView
+
+            <Button
+                android:id="@id/debtor_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/shape_unit_management"
+                android:background="#b75fcf"
+                android:elevation="4dp"
                 android:gravity="center"
                 android:lines="1"
-                android:padding="5dp"
-                android:text="مجتمع میلاد"
+                android:text="حساب ها"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="25sp" />
+
+
+            <Button
+                android:id="@id/edit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="#e41e78af"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:lines="1"
+                android:text="ویرایش"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
 
         </LinearLayout>
 
-    </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+</RelativeLayout>

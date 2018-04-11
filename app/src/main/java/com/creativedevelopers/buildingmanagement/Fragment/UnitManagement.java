@@ -3,6 +3,7 @@ package com.creativedevelopers.buildingmanagement.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -38,6 +39,21 @@ public class UnitManagement extends android.app.Fragment
         UnitManagement_Adapter adapter=new UnitManagement_Adapter(getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1, LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(adapter);
+
+        android.support.v7.widget.Toolbar toolbar=view.findViewById(R.id.unitManagement_toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         return view;
     }
