@@ -11,7 +11,6 @@ import com.creativedevelopers.buildingmanagement.Model.Building;
 import com.creativedevelopers.buildingmanagement.Model.DataBase;
 import com.creativedevelopers.buildingmanagement.Model.Owner;
 import com.creativedevelopers.buildingmanagement.R;
-
 public class MainActivity extends AppCompatActivity {
 
     @Override

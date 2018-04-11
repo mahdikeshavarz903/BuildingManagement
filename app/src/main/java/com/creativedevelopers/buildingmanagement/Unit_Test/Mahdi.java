@@ -9,14 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
-
+import com.creativedevelopers.buildingmanagement.R;
 import com.creativedevelopers.buildingmanagement.Fragment.UnitManagement;
 import com.creativedevelopers.buildingmanagement.Fragment.UnitsDetail;
 import com.creativedevelopers.buildingmanagement.Model.Apartment;
 import com.creativedevelopers.buildingmanagement.Model.Building;
 import com.creativedevelopers.buildingmanagement.Model.DataBase;
 import com.creativedevelopers.buildingmanagement.Model.Owner;
-import com.creativedevelopers.buildingmanagement.R;
 
 import javax.annotation.Resource;
 
