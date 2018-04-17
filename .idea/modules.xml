@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BuildingManagement.iml" filepath="$PROJECT_DIR$/BuildingManagement.iml" />
       <module fileurl="file://E:\DSP4\Video\BuildingManagement2\BuildingManagement.iml" filepath="E:\DSP4\Video\BuildingManagement2\BuildingManagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/BuildingManagement2.iml" filepath="$PROJECT_DIR$/.idea/BuildingManagement2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://E:\DSP4\Video\BuildingManagement2\app\app.iml" filepath="E:\DSP4\Video\BuildingManagement2\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persianmaterialdatetimepicker/persianmaterialdatetimepicker.iml" filepath="$PROJECT_DIR$/persianmaterialdatetimepicker/persianmaterialdatetimepicker.iml" />
     </modules>
   </component>
 </project>
